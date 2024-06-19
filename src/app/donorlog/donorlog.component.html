@@ -1,0 +1,188 @@
+<!-- Section: donor login form Design Block -->
+<section class="text-center text-lg-start" *ngIf="dashboard == false">
+
+
+    <!-- Jumbotron -->
+    <div class="container py-4">
+        <div class="row g-0 align-items-center">
+            <div class="col-lg-5 mb-5 mb-lg-0">
+                <div class="card cascading-right" style="
+                background: hsla(0, 0%, 100%, 0.55);
+                backdrop-filter: blur(30px);
+                ">
+                    <div class="card-body p-5 shadow-5 text-center">
+                        <h2 class="fw-bold mb-5">Donor Login</h2>
+                        <form [formGroup]="DonorLoginForm">
+
+
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="form3Example3">Email address</label>
+                                <input type="email" id="form3Example3" class="form-control" formControlName="Email"
+                                    placeholder="Enter a valid email address" />
+                            </div>
+
+                            <!-- Password input -->
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="form3Example4">Password</label>
+                                <input type="password" id="form3Example4" class="form-control"
+                                    formControlName="Password" placeholder="Enter password" />
+                            </div>
+
+                            <!-- Checkbox -->
+                            <div class="form-check d-flex justify-content-center mb-4">
+                                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33"
+                                    checked />
+                                <label class="form-check-label" for="form2Example33">
+                                    Subscribe to our newsletter
+                                </label>
+                            </div>
+
+                            <!-- Submit button -->
+                            <button type="submit" class="btn btn-primary btn-block mb-4" (click)="getDonerLogIn()">
+                                Sign up
+                            </button>
+
+                            <!-- Register buttons -->
+                            <div class="text-center">
+                                <p>or sign up with:</p>
+                                <button type="button" class="btn btn-link btn-floating mx-1">
+                                    <i class="fab fa-facebook-f"></i>
+                                </button>
+
+                                <button type="button" class="btn btn-link btn-floating mx-1">
+                                    <i class="fab fa-google"></i>
+                                </button>
+
+                                <button type="button" class="btn btn-link btn-floating mx-1">
+                                    <i class="fab fa-twitter"></i>
+                                </button>
+
+                                <button type="button" class="btn btn-link btn-floating mx-1">
+                                    <i class="fab fa-github"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <img src="../../assets/image/Blood-Donation-1.jpg" class="w-100 rounded-4 shadow-4" alt="" />
+            </div>
+        </div>
+    </div>
+    <!-- Jumbotron -->
+</section>
+<!-- Section: donor login form Design Block -->
+
+<!-- donor login dashboard starting -->
+<div class="container-fluid" *ngIf="dashboard == true">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline">Menu</span>
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link align-middle px-0">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span>
+                        </a>
+                        <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a class="nav-link px-0"> <span class="d-none d-sm-inline"
+                                        (click)="profile()">Profile</span></a>
+                            </li>
+                            <li>
+                                <a class="nav-link px-0"> <span class="d-none d-sm-inline"
+                                        (click)="Appointment()">Appointment</span> </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline text-danger">LogOut</span></a>
+                    </li>
+
+                </ul>
+                <hr>
+
+            </div>
+        </div>
+
+        <!--  donor dashboard container area -->
+        <div class="col py-3" >
+         
+
+            <!-- show donor list -->
+            <div class="card w-100 shadow-4" *ngIf="donorlist== true">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Full_name</th>
+                            <th>Father_name</th>
+                            <th>Address</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                            <th>Date</th>
+                            <th>BloodGruop</th>
+                          
+                        </tr>
+                    </thead>
+                    
+
+                    <tbody>
+                        <tr *ngFor="let item of Array1">
+                            <th>{{item.Id}}</th>
+                            <th>{{item.Full_name}}</th>
+                            <th>{{item.Father_name}}</th>
+                            <th>{{item.Address}}</th>
+                            <th>{{item.Mobile}}</th>
+                            <th>{{item.Email}}</th>
+                            <th>{{item.Date}}</th>
+                            <th>{{item.BloodGruop}}</th>
+                          
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- show /donor list -->
+
+            <!-- ----bookAppointment -->
+            <div class="form-bg " *ngIf="Appointmentform">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6">
+                            <div class="form-container">
+                                <form class="form-horizontal" [formGroup]="AppointmentForm">
+                                    <h3 class="title">Book Your Appointment</h3>
+                                    <div class="form-group">
+
+                                        <span class="input-icon"><i class="fa fa-user"></i></span>
+                                        <input class="form-control text-white" type="email" placeholder="" formControlName="Email" >
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <span class="input-icon"><i class="fa fa-lock"></i></span>
+                                        <input class="form-control" type="password" placeholder="Password">
+                                    </div> -->
+                                    <span class="forgot-pass text-white">Wait For Response</span>
+                                    <button class="btn signin" type="submit" (click)="BookAppointment()">Book</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ---/bookAppointment -->
+        </div>
+    </div>
+</div>

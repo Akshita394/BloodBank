@@ -1,0 +1,273 @@
+<!--Admin login form -->
+<div *ngIf="dashboard == false">
+    <section>
+        <div class="container-fluid h-custom">
+            <div class="row  text-center">
+                <div class="col-lg-12">
+                    <img src="../../assets/image/logo.jpg" alt="">
+                    <h2>AdminLogin</h2>
+                </div>
+
+            </div>
+
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-9 col-lg-6 col-xl-5">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                        class="img-fluid" alt="Sample image">
+                </div>
+                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                    <form [formGroup]="AdminLOginForm">
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="form3Example3">Email address</label>
+                            <input type="email" id="form3Example3" class="form-control form-control-lg"
+                                placeholder="Enter a valid email address" formControlName="email">
+
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="form-outline mb-3">
+                            <label class="form-label" for="form3Example4">Password</label>
+                            <input type="password" id="form3Example4" class="form-control form-control-lg"
+                                placeholder="Enter password" formControlName="password" />
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <!-- Checkbox -->
+                            <div class="form-check mb-0">
+                                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                                <label class="form-check-label" for="form2Example3">
+                                    Remember me
+                                </label>
+                            </div>
+                            <a href="#!" class="text-body">Forgot password?</a>
+                        </div>
+
+                        <div class="text-center text-lg-start mt-4 pt-2">
+                            <button type="button" class="btn btn-outline-danger btn-lg"
+                                style="padding-left: 2.5rem; padding-right: 2.5rem;"
+                                (click)="login(AdminLOginForm.value)">Login</button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- /adminlogin -->
+
+<!-- admin Dashbord -->
+<div class="container-fluid" *ngIf="dashboard == true">
+    
+    <div class="row flex-nowrap">
+        <!-- admin Dashbord buttons-->
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <a class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline">Menu</span>
+                </a>
+
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link align-middle px-0">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span>
+                        </a>
+                        <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a class="nav-link px-0"> <span class="d-none d-sm-inline"
+                                        (click)="GetDoonerData()">Dooner Appointments</span></a>
+
+                            </li>
+                            <li>
+                                <a class="nav-link px-0"> <span class="d-none d-sm-inline"
+                                        (click)="GetBloodReqData()">Blood Request List</span></a>
+
+                            </li>
+                            <li>
+                                <a class="nav-link px-0"> <span class="d-none d-sm-inline"
+                                        (click)="GetHistorylist()">History</span></a>
+
+                            </li>
+                            <li>
+                                <a class="nav-link px-0"> <span class="d-none d-sm-inline"
+                                        (click)="ShowBloodStock()">Blood Stock</span></a>
+                                
+                            </li>
+                            <li>
+                                <a class="nav-link px-0"> <span class="d-none d-sm-inline"
+                                        (click)="bar()">chart</span></a>
+
+                            </li>
+                        </ul>
+
+                    </li>
+                    <li><a class="dropdown-item text-danger" href="#">Sign out</a></li>
+
+                </ul>
+                <hr>
+
+            </div>
+        </div>
+        <!-- /admin Dashbord buttons-->
+
+        <!-- starting of admin dashboard cotain area -->
+        <div class="col py-3">
+            <!-- Bar chart to show blood stock -->
+            <div style="width:600px; height:600px ;" *ngIf="chart == true">
+                <canvas id="myChartbar"></canvas>
+            </div>
+            <!-- /Bar chart to show blood stock -->
+
+            <!-- show donorAppointment list -->
+            <table class="table" *ngIf="donerList == true">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Id</th>
+                        <th>Full_name</th>
+                        <th>Mobile</th>
+                        <th>BloodGruop</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let item of Array1">
+                        <th>{{item.Id}}</th>
+                        <th>{{item.Full_name}}</th>
+                        <th>{{item.Mobile}}</th>
+                        <th>{{item.BloodGruop}}</th>
+                        <th>{{item.Address}}</th>
+                        <th>{{item.Email}}</th>
+                        <th>
+                            <button type="button" class="btn btn-outline-danger  text-dark  me-2"
+                                (click)="DonorAppointmentHandler(item)">Accept</button>
+                            <button type="button" class="btn btn-outline-primary  text-dark "
+                                (click)="DenyAppointment(item.Id)">Deny</button>
+                        </th>
+
+                    </tr>
+
+                </tbody>
+            </table>
+            <!-- show dooner list -->
+
+            <!-- show Blood Request list -->
+            <div class="row" *ngIf="BloodRequestList == true">
+                <h1 class="text-danger">Blood Request list</h1>
+
+                <table class="table">
+
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Full_name</th>
+                            <th>Father_Name</th>
+                            <th>Quantity</th>
+                            <th>Address</th>
+                            <th>Email</th>
+                            <th>phoneNumber</th>
+                            <th>BloodGruop</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let item1 of ReqArray">
+                            <th>{{item1.Id}}</th>
+                            <th>{{item1.Full_name}}</th>
+                            <th>{{item1.Father_name}}</th>
+                            <th>{{item1.Quantity}}</th>
+                            <th>{{item1.Address}}</th>
+                            <th>{{item1.Email}}</th>
+                            <th>{{item1.phoneNumber}}</th>
+                            <th>{{item1.BloodGruop}}</th>
+                            <th>
+                                <button type="button" class="btn btn-outline-danger  text-dark  me-2"
+                                    (click)="postRequestHandler(item1)">Accept</button>
+                                <button type="button" class="btn btn-outline-primary  text-dark "
+                                    (click)="DenyBloodRequest(item1.Id)">Deny</button>
+                            </th>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- show BloodRequest list -->
+
+            <!-- show history list -->
+            <table class="table" *ngIf="HistoryList == true">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Full_name</th>
+                        <th>Date</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                        <th>BloodGruop</th>
+                        <th>Quantity</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let item1 of HistoryArray">
+                        <th>{{item1.Id}}</th>
+                        <th>{{item1.Full_name}}</th>
+                        <th>{{item1.Date}}</th>
+                        <th>{{item1.Address}}</th>
+                        <th>{{item1.Email}}</th>
+                        <th>{{item1.BloodGruop}}</th>
+                        <th>{{item1.Quantity}}</th>
+                        <th [ngStyle]="{'color':item1.Type === 'Donor' ? 'green' : 'red' }">{{item1.Type}}</th>
+                    </tr>
+
+                </tbody>
+            </table>
+            <!-- show /history list -->
+            <!-- show BloodStock -->
+            <div class="" *ngIf="BloodStocklist == true">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>BloodGroup</th>
+                            <th>Quantity</th>
+
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let item of BloodStockArray">
+                            <th>{{item.id}}</th>
+                            <th>{{item.BloodGroup}}</th>
+                            <th>{{item.Quantity}}</th>
+
+
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /admin dashboard -->

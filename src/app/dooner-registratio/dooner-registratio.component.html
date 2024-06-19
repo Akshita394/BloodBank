@@ -1,0 +1,127 @@
+<!-- Section: Design Block -->
+<section>
+
+    <!-- Background image -->
+    <div class="p-5 bg-image" style="
+background-image: url('https://wallpaperaccess.com/full/4212524.jpg');
+background-repeat: no-repeat;
+background-size: cover;
+height: 300px;
+"></div>
+    <!-- Background image -->
+
+    <div class="card mx-4 mx-md-5 shadow-5-strong ">
+        <div class="card-body py-5 px-md-5">
+
+            <div class="row d-flex  justify-content-center">
+                <div class="col-lg-8">
+
+                    <h2 class="fw-bold mb-5 text-center">DONOR REGISTRATION</h2>
+                    <form [formGroup]="DoonerRegistration">
+                        <!-- 2 column grid layout with text inputs for the Name and Father names -->
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form3Example1">Full Name</label>
+                                    <input type="text" id="form3Example1" class="form-control"
+                                        formControlName="Full_name" />
+                                        <span class="text-danger" *ngIf="Full_name && Full_name.invalid && Full_name.touched">This input field is not valid</span>
+                                        
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form3Example2">Father Name</label>
+                                    <input type="text" id="form3Example2" class="form-control"
+                                        formControlName="Father_name" />
+                                        <span class="text-danger" *ngIf="Father_name && Father_name.invalid && Father_name.touched">This input field is not valid</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- Address input -->
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form3Example3"> Address</label>
+                                    <input type="text" id="form3Example3" class="form-control"
+                                        formControlName="Address" />
+                                        <span class="text-danger" *ngIf="Address && Address.invalid && Address.touched">This input field is not valid</span>
+                                </div>
+                            </div>
+
+                            <!-- Date input -->
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form3Example4">Date</label>
+                                    <input type="Date" id="form3Example4" class="form-control" formControlName="Date" />
+                                    <span class="text-danger" *ngIf="Date && Date.invalid && Date.touched">This input field is not valid</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <!-- Mobile input -->
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form3Example3">Mobile Number</label>
+                                    <input type="text" id="form3Example3" class="form-control"
+                                        formControlName="Mobile" />
+                                        <span class="text-danger" *ngIf="Mobile && Mobile.invalid && Mobile.touched">This input field is not valid</span>
+                                </div>
+                            </div>
+
+                            <div  class="col-md-6 mb-4">
+                                <label class="input-group-text" for="inputGroupSelect01">Blood Gruop</label>
+                                <select class="form-select" id="inputGroupSelect01" formControlName="BloodGruop">
+                                    <option [selected]="selected">-Blood Gruop-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="A+">A+</option>
+                                    <option value="B+">B+</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="O-">O-</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB-">AB-</option>
+
+                                </select>
+                              </div>
+
+                        </div>
+                        <div class="row">
+                            <!-- Email input -->
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label" >Email address</label>
+                                    <input type="email"  class="form-control" 
+                                        formControlName="Email"  />
+                                        <span class="text-danger" *ngIf="Email && Email.invalid && Email.touched">This input field is not valid</span>
+                                </div>
+                            </div>
+
+                            <!-- Password input -->
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form3Example4">Password</label>
+                                    <input type="password" id="form3Example4" class="form-control"
+                                        formControlName="Password" />
+                                        <span class="text-danger" *ngIf="Password && Password.invalid && Password.touched">This input field is not valid</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Submit button -->
+                        <button [disabled]="DoonerRegistration.invalid" type="submit" class="btn btn-outline-danger btn-block mb-4" (click)="PostDoonerData()">
+                            Sign up
+                        </button>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section: Design Block -->
